@@ -6,7 +6,63 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello everyone</h1>
+    <div class="wrap_container">
+        <h1>WEATHER APP</h1>
+        <div class="tab_container">
+            <div class="tab" data-userWeather>Your Weather</div>
+            <div class="tab" data-searchWeather>Search Weather</div>
+        </div>
+        <div class="main-conatiner">
+            <div class="grant-location-container">
+                <img src="./assets/location.png" width="80" height="80" loading="lazy">
+                <p>Grant Location Access</p>
+                <p>Allow Access to Get Weather information</p>
+                <button class="btn" dta-grantAccess>Grant Access</button>
+            </div>
+
+            <form class="form-container" data-searchForm>
+                <input placeholder="Search for City..." data-searchInput>
+                <button class="btn">
+                    <img src="./assets/search.png" width="20" height="20" loading="lazy">
+                </button>
+            </form>
+
+            <div class="loading-container">
+                <img src="./assets/loading.gif" width="150" height="150">
+                <p>loading</p>
+            </div>
+
+            <div class="user-info-container">
+                <div class="name">
+                    <p data-cityName></p>
+                    <img data-countryIcon>
+                    <p data-weathDesc></p>
+                    <img data-weatherIcon>
+                    <p data-temp></p>
+
+                    <div class="parameter-container">
+                        <div class="parameter">
+                            <img src="./assets/wind.png" alt="">
+                            <p >WindSpeed</p>
+                            <p data-windSpeed></p>
+                        </div>
+                        <div class="parameter">
+                            <img src="./assets/humidity.png" alt="">
+                            <p>humidity</p>
+                            <p data-humidity></p>
+                        </div>
+                        <div class="parameter">
+                            <img src="./assets/wind.png" alt="">
+                            <p>Clouds</p>
+                            <p data-cloud></p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <p></p>
+            </div>
+        </div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
