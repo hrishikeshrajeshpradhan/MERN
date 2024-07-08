@@ -23,13 +23,14 @@ function switchTab(clickedtab){
         if(searchForm.classList.contains("active")){
             //search tab par abhi hai, userTab par jana hai
             searchForm.classList.remove("active");
-            userInfo.classList.remove("active");
-            loadingScreen.classList.add("active");
+            loadingScreen.classList.remove("active");
+            userInfoContainer.classList.add("active");
+            getFromSessionStorage();
+            
         }else{
             loadingScreen.classList.remove("active");
-            userInfo.classList.remove("active");
+            userInfoContainer.classList.remove("active");
             searchForm.classList.add("active");
-            getFromSessionStorage();
         }
     }
 }
@@ -58,6 +59,7 @@ async function fetchUserWeatherInfo(coordinates){
         const response=await fetch(url);
         const data=await response.json();
         loadingScreen.classList.remove("active");
+        searchForm.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data);
 
@@ -80,10 +82,10 @@ function renderWeatherInfo(weatherInfo){
     countryIcon.src=`https://flagcdn.com/144x108/${weatherInfo?.sys?.country.toLowerCase()}.png`;
     weatherDesc.innerText=weatherInfo?.weather?.[0]?.description;
     weatherIcon.src=`https://openweathermap.org/img/wn/${weatherInfo?.weather?.[0]?.icon}@2x.png`;
-    temp.innerText=weatherInfo?.main?.temp;
-    windSpeed.innerText=weatherInfo?.wind?.speed;
-    humidity.innerText=weatherInfo?.main?.humidity;
-    cloud.innerText=weatherInfo?.clouds?.all;
+    temp.innerText=`${weatherInfo?.main?.temp} °C`;
+    windSpeed.innerText=`${weatherInfo?.wind?.speed} m/s`;
+    humidity.innerText=`${weatherInfo?.main?.humidity} m/s`;
+    cloud.innerText=`${weatherInfo?.clouds?.all} m/s`;
 }
 
 const grantAccessBtn=document.querySelector("[data-grantAccess]");
@@ -134,6 +136,7 @@ async function fetchSearchWeatherInfo(cityName){
         const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`);
         const data=await response.json();
         loadingScreen.classList.remove("active");
+        searchForm.classList.remove("active");
         userInfoContainer.classList.add("active");
         renderWeatherInfo(data);
     }catch(e){
